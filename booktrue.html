@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>借阅</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/booktrue.css">
+	<link rel="stylesheet" href="css/top.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <link href="css/mobiscroll.core-2.5.2.css" rel="stylesheet" />
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script> 
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+</head>
+<body>
+	<div class="xq_con">
+			<div class="top">
+				<span><a href="javascript:history.go(-1)"></a></span>
+				<p>借 阅</p>
+			</div>
+			<p class="bk_tit bk_tit1">书本详情</p>
+			<div class="bokxq">
+				
+				<div class="b_pic"><img v-bind:src="bookxq.bokpic" alt=""></div>
+				<div class="b_con">
+					<p class="bookname">{{bookxq.bokname}}</p>
+					<p class="bookleader">{{bookxq.leadr}}</p>
+					<p class="bookfrom">出版社: {{bookxq.from}} {{bookxq.time}}</p>
+				</div>
+				
+			</div>
+			<p class="bk_tit">借 阅 详 情</p>
+			<div class="position">
+				<div class="pb_con">
+					<p>书本状态: <span class="sta">{{bookxq.state}}</span></p>
+					<p>借阅时间: <span class="j_time"></span></p>
+					<p>还书时间: <span class="y_time"><input type="text" name="USER_AGE" id="USER_AGE" readonly class="input" placeholder="请填写还书时间" /><i class="fa fa-pencil-square-o"></i></span></p>
+				</div>
+				
+			</div>
+
+			<p class="qian"><input type="checkbox" id="charset" checked="checked"><label  >我已阅读 <span id="clace" ><<借阅条款>></span></label></p>
+			<div class="Btn"><a href="">确 认 借 阅</a></div>
+	</div>
+		<div class="wrap none">
+			<div class="outer-container">
+				<div class="cale">
+					<div class="cla_con">
+						<p class="cla_tit">图书借阅制度</p>
+						<div class="cla_txt">
+							<p>1、经本人申请可办理借书卡，凭借书证（卡）借书。</p>
+							<p>2、借书证限本人使用，每次可借1-3本图书，借期不超过10天。到期未看完者，须办理续借手续。</p>
+							<p>3、专业书或专业参考书，借期四个月，到期全部归还。</p>
+							<p>4、工具书和善本书一律不外借，只限在资料室内查阅。</p>
+							<p>5、读者要爱护图书，不得污损、撕毁、批注和丢失，如有上述情况应按制度赔偿。对于违章的读者，在未办妥有关赔偿手续前，暂停其借阅权利。</p>
+							<p>6、借书证限本人或专人使用，应妥善保管，如发生代借、冒借等现象，概由领证人负责。借书证和借书卡丢失，应立即到图书馆挂失，图书馆（室）将集中办理补发手续。</p>
+							<p>7、书刊遗失，尽量购买原版本图书赔偿，否则以书刊价格的1～20倍赔偿。图书馆（室）将所有罚款与赔书款，全部纳入购书经费。</p>
+						</div>
+					</div>
+				</div>
+				<span class="close">×</span>
+			</div>
+		</div>
+		
+	<script src="js/mobiscroll.core-2.5.2.js"></script> 
+    <script src="js/mobiscroll.datetime-2.5.1.js"></script>
+	<script type="text/javascript">
+		// 借阅时间
+		$(function(){
+			let date=new Date();
+			let year=date.getFullYear();
+			let month=date.getMonth()+1;
+			if(month<10){
+				month="0"+month;
+			}
+			let day=date.getDate();
+			let today=year+" / "+month+" / "+day;
+			$(".j_time").text(today)
+
+			//还书时间
+			var currYear = (new Date()).getFullYear();	
+			var opt={};
+			opt.date = {preset : 'date'};
+			//opt.datetime = { preset : 'datetime', minDate: new Date(2012,3,10,9,22), maxDate: new Date(2014,7,30,15,44), stepMinute: 5  };
+			opt.datetime = {preset : 'datetime'};
+			opt.time = {preset : 'time'};
+			opt.default = {
+				theme: 'android-ics light', //皮肤样式
+		        display: 'modal', //显示方式 
+		        mode: 'scroller', //日期选择模式
+				lang:'zh',
+				dateFormat: 'yyyy / mm / dd', // 日期格式
+		        startYear:currYear - 10, //开始年份
+		        endYear:currYear + 10 //结束年份
+			};
+
+			$("#USER_AGE").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+
+			$("#clace").click(function(){
+					$(".outer-container").stop().animate({
+                        width: "+=75vw",
+                        height: "+=110vw",
+                        top: "-=55vw",
+                        left: "-=35.5vw"
+                    }, 50);
+
+
+				$(".wrap").css({
+					"z-index":"999",
+				     "display":"block",
+				     "position": "fixed",
+				     "top": "0",
+				     "left": "0",
+				     "width":$(window).width()+"px",
+				     "height":$(window).height()+"px",
+				     "background-color":"rgba(0,0,0,0.7)"
+				})
+			});
+			$(".close").click(function(){
+				$(".wrap").hide();
+				$(".outer-container").stop().animate({
+                        width: "-=75vw",
+                        height: "-=110vw",
+                        top: "+=55vw",
+                        left: "+=35.5vw"
+                    }, 100);
+
+
+			})
+				
+			
+
+
+           });
+
+
+
+		new Vue({
+		el:'.xq_con',
+		data:{
+			bookxq:{
+				bokname:'河对岸的窗',
+				bokpic:'http://103.235.234.147:6788/bookimg/I712.453159.jpg',
+				leadr:'[美]布莱恩●莫顿',
+				from:'二十一世纪出版社',
+				time:'(2014-5-1)',
+				team:'哲学',
+				num:'I712.45/3159',
+				state:'在馆,可外借',
+				position:'预借库 C 库09巷左侧03架06层',
+				nuber:'052T001846041',
+				bookCon:'《河对岸的窗》中诺拉和埃希克分手已经五年了。而这一夜，埃希克在电话听筒的静默中认出了诺拉三十五岁的诺拉，始终逃避着心之所欲。',
+				bookcon:'《河对岸的窗》中诺拉和埃希克分手已经五年了。而这一夜，埃希克在电话听筒的静默中认出了诺拉…… 三十五岁的诺拉，始终逃避着心之所欲。她有写作才能，却害怕踏上作家之路，因为一旦提笔，她就成了恶魔：他人极欲隐藏的秘密与最不想面对的自我，都在她敏锐灵感的挖掘下无处遁形，并都成为她写作的养分。四十岁的埃希克，将全部的热情都投注在摄影上，但他渴求的艺术成就却迟……'
+			},
+			
+			show:true,
+			hide:false,
+
+
+
+		},
+		methods:{
+			open:function(){
+				this.show=false,
+				this.hide=true
+			},
+			close:function(){
+				this.show=true,
+				this.hide=false
+			}
+
+		}
+	})
+
+	</script>
+</body>
+</html>

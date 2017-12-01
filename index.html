@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>朝阳图书馆</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+
+</head>
+<body>
+	<div class="app">
+		<div class="app_pic">
+			<img src="images/logo.png" alt="">
+		</div>
+		<form action="" id="form">
+			<div class="name">
+				   <label for="name"></label>
+				   <input type="text" id="name" placeholder="手机号/读者卡号" v-model="username">
+			</div>
+			<div class="pass">
+			   <label for="pass"></label>
+			   <input type="text" id="pass" placeholder="请输入密码" v-model="userpass">
+			</div>
+			<div class="submit">
+			  <button id="btn" @click="open()"><a v-bind:href="message">登 录</a></button>
+			   <p class="a_btn">
+				  <a href="ind1.html">立即注册</a>
+				  <a href="">忘记密码？</a>
+			   </p>
+			</div>
+		</form>
+		<div class="other">
+				<p><span></span>or<span></span></p> 
+				<div class="lin">
+					<a href=""></a>
+					<a href=""></a>
+					<a href=""></a>
+				</div>
+				
+		</div>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:".app",
+			data:{
+				message:'',
+				username:'',
+				userpass:''
+			},
+			methods:{
+				open:function(){
+					if(this.username=="123456"&&this.userpass=="0000"){
+							this.message="ind1.html"
+					}else{
+						alert("账户和密码不匹配,请重新输入。")
+					}
+					
+				}
+			}
+		})
+	
+	</script>
+</body>
+</html>

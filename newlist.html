@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>新闻资讯</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/newlist.css">
+	<link rel="stylesheet" href="css/appfoot.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+	 <div class="top">	
+		<div class="top_tit">
+			<p><span><a href="javascript:history.go(-1)"></a></span>新闻资讯</p>
+		</div>
+	</div>
+
+	<div class="fw_con">
+		<ul>
+			<li v-for="item in newLists">
+				<div class="n_xq">
+					<div class="n_pic"><a href=""><img v-bind:src="item.n_pic" alt=""></a></div>
+					<div class="_n_con">
+						<p class="n_tit">{{item.n_tit}}</p>
+						<p class="n_time">{{item.n_time}}</p>
+						<div class="n_txt">{{item.n_txt}}</div>
+					</div>
+				</div>
+				<p class="n_bum">
+				    <span class="n_eye"><i></i>{{item.n_eye}}</span>
+					<span class="n_shc"><i></i>{{item.n_shc}}</span>
+					<span class="n_share"><i></i>{{item.n_share}}</span>
+				</p>
+			</li>
+		</ul>
+	</div>
+
+
+
+	<div class="foot">
+		<ul>
+			<li class="act"><a href="ind1.html">
+				<div><i></i></div>
+				<p>首页</p>
+			</a></li>
+			<li><a href="message.html">
+				<div><i></i></div>
+				<p>消息</p>
+			</a></li>
+			<li><a href="">
+				<div><i></i></div>
+				<p>馆藏查询</p>
+			</a></li>
+			<li><a href="">
+				<div><i></i></div>
+				<p>清单</p>
+			</a></li>
+			<li><a href="Person.html">
+				<div><i></i></div>
+				<p>我的</p>
+			</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		$(function(){
+		$(document).on("scroll",function(){
+			var B_top=$(".top").height();
+		    var top_t=$(".top_tit");
+			var Top=$("body").scrollTop();
+			console.log(Top)
+			if(Top<=B_top-top_t.height()&&Top>top_t.height()){
+				top_t.css("background","rgba(0,0,0,.6)")
+
+			}else if(Top>B_top-top_t.height()){
+				top_t.css("background","#f64f5e");
+			}
+			else{
+				top_t.css("background","transparent");
+			}
+
+      	})
+		$(".n_eye i").click(function(){
+			$(this).css({
+				"background":"url(images/newxq/11.png) center center no-repeat",
+				"background-size":"100%"
+			})
+		})
+		$(".n_shc i").click(function(){
+			$(this).css({
+				"background":"url(images/newxq/22.png) center center no-repeat",
+				"background-size":"100%"
+			})
+		})
+		$(".n_share i").click(function(){
+			$(this).css({
+				"background":"url(images/newxq/33.png) center center no-repeat",
+				"background-size":"100%"
+			})
+		})    
+	})
+
+
+
+	</script>
+	<script type="text/javascript" src="js/json.js"></script>
+	<script type="text/javascript">	
+		new Vue({
+			el:".fw_con",
+			data:data,
+			methods:{
+			}
+		})
+	</script>
+</body>
+</html>
