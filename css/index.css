@@ -177,18 +177,19 @@ body{
     right:0;
     margin:auto;
     text-align:center;
-    line-height:40px;
-    color:#555;
-    font-size:12px;
+    line-height:10vw;
+    color:#fff;
+    font-size:14px;
     border-radius:5px;
-	width:150px;
-	height:80px;
-	background: rgba(255,255,255,0.7);
+	width:35vw;
+	padding-top:5vw; 
+	height:25vw;
+	background: rgba(0,0,0,0.9);
 
 }
 .succes .loadn{
-	width:20px;
-	height:20px;
+	width:8vw;
+	height::;vw;
 	display:block;
 	margin:0 auto;
 }
